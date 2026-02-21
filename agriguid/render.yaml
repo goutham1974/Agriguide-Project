@@ -1,9 +1,8 @@
 services:
   - type: web
     name: agriguid-backend
-    runtime: java
-    buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/agriguid-0.0.1-SNAPSHOT.jar
+    runtime: docker
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: PORT
         value: 8080
