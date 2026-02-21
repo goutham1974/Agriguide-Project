@@ -64,6 +64,9 @@ function App() {
                     {user.fullName}
                   </Link>
                 </li>
+                <li>
+                  <button onClick={handleLogout} className="logout-btn">Logout</button>
+                </li>
               </>
             ) : (
               <>

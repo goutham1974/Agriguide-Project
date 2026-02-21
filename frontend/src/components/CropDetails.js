@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { cropService, cropStageService, experienceService } from '../services/api';
 import './CropDetails.css';
@@ -11,11 +11,7 @@ function CropDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    loadCropDetails();
-  }, [id]);
-
-  const loadCropDetails = async () => {
+  const loadCropDetails = useCallback(async () => {
     try {
       setLoading(true);
       const [cropRes, stagesRes, expRes] = await Promise.all([
@@ -34,7 +30,11 @@ function CropDetails() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadCropDetails();
+  }, [loadCropDetails]);
 
   const handleMarkHelpful = async (expId) => {
     try {
