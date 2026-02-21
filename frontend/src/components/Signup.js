@@ -93,7 +93,7 @@ function Signup() {
       } else if (err.request) {
         // Request made but no response
         console.error('No response from backend:', err.request);
-        setError('Cannot connect to server. Please ensure backend is running on port 8080.');
+        setError('Cannot connect to server. Please try again in a moment.');
       } else {
         // Other error
         console.error('Error:', err.message);

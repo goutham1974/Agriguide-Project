@@ -13,7 +13,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class CorsConfig {
 
-    @Value("${cors.allowed.origins:http://localhost:3000}")
+    @Value("${cors.allowed.origins:http://localhost:3000,https://agriguide-project.vercel.app}")
     private String allowedOrigins;
 
     @Bean
@@ -26,6 +26,7 @@ public class CorsConfig {
         config.setAllowedOrigins(origins);
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
+        config.setMaxAge(3600L);
 
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
